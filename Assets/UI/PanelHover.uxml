@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="StationInfo" src="project://database/Assets/Game/Station%20Info/StationInfo.uxml?fileID=9197481963319205126&amp;guid=4bedca7827b25734185fe787b902e68b&amp;type=3#StationInfo" />
+    <Style src="project://database/Assets/UI/PanelStyle.uss?fileID=7433441132597879392&amp;guid=ff05c38b938431747afbd6d21b8fe304&amp;type=3#PanelStyle" />
+    <ui:VisualElement name="PanelRoot" picking-mode="Ignore" style="flex-grow: 1; flex-direction: row; justify-content: space-between;">
+        <ui:VisualElement name="PanelLeft" class="RootPanel" style="width: 180px;">
+          <ui:ListView name="PathListView" item-template="project://database/Assets/UI/StationsPathItem.uxml?fileID=9197481963319205126&amp;guid=d1013c776ec8f914c97645221cc34428&amp;type=3#StationsPathItem" class="value" >
+            
+          </ui:ListView>
+        </ui:VisualElement>
+        <ui:VisualElement name="PanelRight" class="RootPanel" style="width: 180px; font-size: 11px; flex-shrink: 1;">
+            <ui:Instance template="StationInfo" name="TemplateContainer" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

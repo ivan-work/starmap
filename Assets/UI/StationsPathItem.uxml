@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="StationPathItem">
+        <ui:Label text="Label" name="StationName" data-source-type="Game.Station.StationPrefab, GameAssembly">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="_Data_k__BackingField._Name_k__BackingField" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,32 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+         noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+  <Style src="project://database/Assets/UI/PanelStyle.uss?fileID=7433441132597879392&amp;guid=ff05c38b938431747afbd6d21b8fe304&amp;type=3#PanelStyle"/>
+  <ui:VisualElement name="StationInfoRoot" data-source-type="Game.StationData, GameAssembly" style="flex-direction: column;">
+    <ui:VisualElement name="StatsContainer" style="flex-direction: row;">
+      <ui:VisualElement name="Labels">
+        <ui:Label text="Станция" name="NameLabel" class="padding-1 dynamicTinting label" style="margin-right: 0;"/>
+        <ui:Label text="Статус" name="StatusLabel" class="padding-1 dynamicTinting label" style="margin-right: 0;"/>
+      </ui:VisualElement>
+      <ui:VisualElement name="Values" style="flex-grow: 1;">
+        <ui:Label text="NameValue" name="NameValue" class="padding-1 value" style="margin-left: -3px;">
+          <Bindings>
+            <ui:DataBinding property="text" data-source-path="_Name_k__BackingField" binding-mode="ToTarget"/>
+          </Bindings>
+        </ui:Label>
+        <ui:Label text="StatusValue" name="StatusValue" class="padding-1 value" style="margin-left: -3px;">
+          <Bindings>
+            <ui:DataBinding property="text" data-source-path="_status._Status_k__BackingField" binding-mode="ToTarget"/>
+          </Bindings>
+        </ui:Label>
+      </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:Label text="Описание" name="DescriptionLabel" class="padding-1 dynamicTinting label" style="align-self: flex-start; margin-bottom: 0;"/>
+    <ui:Label
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer cursus velit eros, et malesuada arcu bibendum ac. Mauris in interdum nisl. Quisque condimentum vel nisl id dictum. Aenean bibendum venenatis odio, sed mattis lacus pretium at. Mauris fringilla accumsan fringilla. In aliquam odio diam, sit amet sodales turpis venenatis a."
+      name="DescriptionValue" selectable="true" class="padding-1 value" style="white-space: normal; margin-top: -1px;">
+      <Bindings>
+        <ui:DataBinding property="text" data-source-path="_Description_k__BackingField" binding-mode="ToTarget"/>
+      </Bindings>
+    </ui:Label>
+  </ui:VisualElement>
+</ui:UXML>

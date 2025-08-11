@@ -1,0 +1,39 @@
+.RootPanel {
+    background-image: resource('kenney_ui-pack-space-expansion/PNG/Grey/Default/button_square_header_small_rectangle_screws');
+    -unity-slice-top: 20;
+    -unity-slice-right: 20;
+    -unity-slice-bottom: 20;
+    -unity-slice-left: 20;
+    padding-top: 16px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+.padding-1 {
+    padding-top: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+}
+
+.label {
+    -unity-slice-left: 16;
+    -unity-slice-top: 16;
+    -unity-slice-right: 16;
+    -unity-slice-bottom: 16;
+    background-image: resource('kenney_ui-pack-space-expansion/PNG/Grey/Default/bar_square_small');
+    -unity-font-style: bold;
+}
+
+.value {
+    -unity-slice-left: 16;
+    -unity-slice-top: 16;
+    -unity-slice-right: 16;
+    -unity-slice-bottom: 16;
+    -unity-background-image-tint-color: rgba(128, 128, 128, 0.51);
+    background-image: resource('kenney_ui-pack-space-expansion/PNG/Grey/Default/bar_square_small');
+}
+
+.dynamicTinting {
+}
