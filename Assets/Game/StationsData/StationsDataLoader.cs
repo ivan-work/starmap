@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using Game.Station_Status;
-using Game.StationsData;
 using Game.Utils;
 using Library;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Game {
+namespace Game.StationsData {
   public class StationsDataLoader : PlainSingleton<StationsDataLoader> {
-    private const string FileName = "stations.csv";
+    private const string LocalFileName = "stations.csv";
 
     private async Awaitable<string> loadFileSystem(string fileName) {
       var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Assets", "Resources", fileName);
@@ -29,12 +28,12 @@ namespace Game {
 
     private async Awaitable<string> loadFileWeb(string filepath) {
       Uri.TryCreate(Application.absoluteURL, UriKind.Absolute, out var uri);
-      var baseUri = uri.GetLeftPart(UriPartial.Authority);
-      Debug.Log($"Path is {baseUri}/{FileName}");
-      var www = UnityWebRequest.Get($"{baseUri}/{FileName}");
+      var baseUri = uri.GetLeftPart(UriPartial.Path);
+      var path = $"{baseUri}{LocalFileName}";
+      Debug.Log($"Path is {path}");
+      var www = UnityWebRequest.Get($"{path}");
       await www.SendWebRequest();
       if (www.result == UnityWebRequest.Result.Success) {
-        Debug.Log($"result is {www.downloadHandler.text}");
         return www.downloadHandler.text;
       }
 
@@ -46,26 +45,25 @@ namespace Game {
     public async Awaitable<StationsDataFile> Load(List<StationStatus> stationStatusList) {
       var result = new StationsDataFile();
       var fileData = "";
-      Debug.Log( Application.absoluteURL);
 #if !UNITY_EDITOR && UNITY_WEBGL
       Debug.Log($"Loading file from web");
-      fileData = await loadFileWeb(FileName);
+      fileData = await loadFileWeb(LocalFileName);
 #else
       Debug.Log($"Loading file from system");
-      fileData = await loadFileSystem(FileName);
+      fileData = await loadFileSystem(LocalFileName);
 #endif
       var index = 0;
 
       var csv = CSVReader.Read(fileData);
-      foreach (var stationDataCsv in csv) {
-        var statusIndexString = stationDataCsv.GetValueOrDefault("status", "");
-        var name = stationDataCsv.GetValueOrDefault("name", "");
-        var description = stationDataCsv.GetValueOrDefault("description", "");
+      Debug.Log($"Stations found: {csv.Count}");
+      foreach (var stationCsv in csv) {
+        var (statusIndexString, name, description, _) = stationCsv.ToArray();
         var stationData = new StationData() {
           Name = name ?? $"Station #{index}", // ...
           Description = description ?? "",
           Status = stationStatusList[SafeIntParse(statusIndexString)]
         };
+        // Debug.Log($"Creating station {stationData.Name} + [{statusIndexString}/{SafeIntParse(statusIndexString)}]{stationData.Status.Status}");
         result.Stations.Add(index, stationData);
         index++;
       }

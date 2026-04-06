@@ -37,9 +37,7 @@ namespace Game.Station {
 
     private void Start() {
       GetComponentInChildren<SpriteRenderer>().color = Data.Status.Color;
-      if (IsHidden) {
-        gameObject.SetActive(false);
-      }
+      gameObject.SetActive(!IsHidden);
       _selectionCircle.SetActive(false);
       _highlightCircle.SetActive(false);
     }
